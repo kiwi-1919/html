@@ -7,6 +7,6 @@ import output
 import core
 
 def main():
-	input.find()
-	result=core.parse()
-	output.export(result)
+	input._find()
+	result=core._parse()
+	output._export(result)

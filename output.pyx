@@ -16,3 +16,5 @@ cdef void export(int status):
 	else:
 		sys.exit()
 	os.system("pause")
+def _export():
+    export()

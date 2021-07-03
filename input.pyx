@@ -8,3 +8,5 @@ cdef void find():
 	#end-cdef
 	shutil.copyfile(file,"tmp.txt")
 	print("get it")
+def _find():
+    find()

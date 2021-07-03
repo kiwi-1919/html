@@ -41,3 +41,5 @@ cdef int parse():
 			break
 	fclose(file)
 	return status
+def _parse():
+    parse()
