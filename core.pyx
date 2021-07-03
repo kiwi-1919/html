@@ -40,6 +40,7 @@ cdef int parse():
         if ftell(file)==SEEK_END:
             break
     fclose(file)
+    print("succeed")
     return status
 def _parse():
     try:
