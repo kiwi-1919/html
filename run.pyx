@@ -1,5 +1,7 @@
 #cython:language_level=3
 cimport cython
+import sys
+sys.path.append('.')
 import input
 import output
 import core
