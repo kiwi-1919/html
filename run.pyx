@@ -7,10 +7,10 @@ import output
 import core
 
 def main():
-	try:
-	    input._find()
-	    result=core._parse()
-	    print(f'{result}')
-	    output._export(result)
-	except Exception as error:
-	    print(error)
+    try:
+        input._find()
+        result=core._parse()
+        print(f'{result}')
+        output._export(result)
+    except Exception as error:
+        print(error)
