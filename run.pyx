@@ -9,4 +9,5 @@ import core
 def main():
 	input._find()
 	result=core._parse()
+	print(f'{result}')
 	output._export(result)
