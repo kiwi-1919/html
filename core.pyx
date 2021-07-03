@@ -42,4 +42,7 @@ cdef int parse():
     fclose(file)
     return status
 def _parse():
-    return parse()
+    try:
+        return parse()
+    except Exception as error:
+        print(error)
