@@ -12,8 +12,9 @@ cdef void export(int status):
         with open("tmp.txt","rt",encoding="utf-8") as file:
             lbl=tkinter.Label(window,text=file.readlines()[0])
             lbl.grid(column=0,row=0)
+            it=iter(file.readlines())
             def click():
-                lbl.configure(text=next(iter(file.readlines())))
+                lbl.configure(text=next(it))
             btn=tkinter.Button(window,text="next",command=click)
             btn.grid(column=0,row=1)
             window.mainloop()
