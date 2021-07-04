@@ -9,9 +9,10 @@ cdef int anno=1
 cdef int ps=2
 cdef int sp=3
 cdef int ss=4
+cdef size_t loc=0
+cdef FILE* file=fopen("tmp.txt","rb")
 
 cdef int parse():
-    cdef FILE* file=fopen("tmp.txt","rb")
     cdef int status=pp
     cdef char c
     cdef char lb=<char>'<'.encode()
@@ -19,35 +20,28 @@ cdef int parse():
     cdef char sl=<char>'/'.encode()
     cdef char ex=<char>'!'.encode()
     #end-cdef
-    fseek(file,0,SEEK_END)
-    cdef size_t length=ftell(file)
-    #end-cdef
-    fseek(file,0,SEEK_SET)
-    while True:
-        if status==pp and fread(&c,1,1,file)==1 and c==lb:
-            if fread(&c,1,1,file)==1 and c==ex:
-                status=anno
-            else:
-                status=ss
-        if status==anno and fread(&c,1,1,file)==1 and c==rb:
+    global loc
+    fseek(file,loc,SEEK_SET)
+    if status==pp and fread(&c,1,1,file)==1 and c==lb:
+        if fread(&c,1,1,file)==1 and c==ex:
+            status=anno
+        else:
+            status=ss
+    if status==anno and fread(&c,1,1,file)==1 and c==rb:
+        status=pp
+    if status==ss and fread(&c,1,1,file)==1 and c==sl:
+        if fread(&c,1,1,file)==1 and c==rb:
             status=pp
-        if status==ss and fread(&c,1,1,file)==1 and c==sl:
-            if fread(&c,1,1,file)==1 and c==rb:
-                status=pp
-        if status==ss and fread(&c,1,1,file)==1 and c==rb:
-            status==ps
-        if status==ps and fread(&c,1,1,file)==1 and c==lb:
-            if fread(&c,1,1,file)==1 and c==sl:
-                status=sp
-        if status==sp and fread(&c,1,1,file)==1 and c==rb:
-            status=pp
-        if ftell(file)==length:
-            break
-    fclose(file)
-    print("succeed")
+    if status==ss and fread(&c,1,1,file)==1 and c==rb:
+        status==ps
+    if status==ps and fread(&c,1,1,file)==1 and c==lb:
+        if fread(&c,1,1,file)==1 and c==sl:
+            status=sp
+    if status==sp and fread(&c,1,1,file)==1 and c==rb:
+        status=pp
+    loc=ftell(file)
     return status
 def _parse():
-    try:
-        return parse()
-    except Exception as error:
-        print(error)
+    while True:
+        result=parse()
+    return result
