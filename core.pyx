@@ -18,10 +18,10 @@ cdef bytes b1='<'.encode()
 cdef bytes b2='>'.encode()
 cdef bytes b3='/'.encode()
 cdef bytes b4='!'.encode()
-cdef char lb=<char>b1
-cdef char rb=<char>b2
-cdef char sl=<char>b3
-cdef char ex=<char>b4
+cdef char lb=<char>int.from_bytes(b1,'big')
+cdef char rb=<char>int.from_bytes(b2,'big')
+cdef char sl=<char>int.from_bytes(b3,'big')
+cdef char ex=<char>int.from_bytes(b4,'big')
 #end-cdef
 
 cdef int parse():
