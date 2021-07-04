@@ -1,6 +1,8 @@
 #cython:language_level=3
 cimport cython
-from libc.stdio cimport*
+from libc.stdio cimport *
+import sys
+sys.setrecursionlimit=10**100
 
 cdef int pp=0
 cdef int anno=1
