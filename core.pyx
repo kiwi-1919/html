@@ -26,9 +26,9 @@ cdef void parse():
     global status2
     global c
     fseek(file,loc,SEEK_SET)
-    if fread(c,1,1,file)==1:
+    if fread(&c,1,1,file)==1:
         if c==lb:
-            if fread(c,1,1,file)==1 and c==sl:
+            if fread(&c,1,1,file)==1 and c==sl:
                 status1+=1
                 status2-=1
             elif c==ex:
@@ -37,7 +37,7 @@ cdef void parse():
                 status1+=1
                 status2+=1
         elif c==sl:
-            if fread(c,1,1,file)==1 and c==rb:
+            if fread(&c,1,1,file)==1 and c==rb:
                 status1-=1
                 status2-=1
         elif c==rb:
