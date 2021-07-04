@@ -3,6 +3,7 @@ cimport cython
 from libc.stdio cimport *
 import sys
 sys.setrecursionlimit=10**100
+import tqdm
 
 cdef int pp=0
 cdef int anno=1
@@ -11,15 +12,15 @@ cdef int sp=3
 cdef int ss=4
 cdef size_t loc=0
 cdef FILE* file=fopen("tmp.txt","rb")
+cdef int status=pp
+cdef char c
+cdef char lb=<char>'<'.encode()
+cdef char rb=<char>'>'.encode()
+cdef char sl=<char>'/'.encode()
+cdef char ex=<char>'!'.encode()
+#end-cdef
 
 cdef int parse():
-    cdef int status=pp
-    cdef char c
-    cdef char lb=<char>'<'.encode()
-    cdef char rb=<char>'>'.encode()
-    cdef char sl=<char>'/'.encode()
-    cdef char ex=<char>'!'.encode()
-    #end-cdef
     global loc
     fseek(file,loc,SEEK_SET)
     if status==pp and fread(&c,1,1,file)==1 and c==lb:
@@ -42,6 +43,8 @@ cdef int parse():
     loc=ftell(file)
     return status
 def _parse():
-    while True:
+    fseek(file,0,SEEK_END)
+    length=ftell(file)
+    for _in tqdm.trange(file)
         result=parse()
     return result
