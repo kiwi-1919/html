@@ -10,14 +10,13 @@ cdef void export(int status):
         window.title("error")
         window.geometry("350x200")
         with open("tmp.txt","rt",encoding="utf-8") as file:
-            for each in file.readlines():
-                def click():
-                    continue
-                lbl=tkinter.Label(window,text=each)
-                lbl.grid(column=0,row=0)
-                btn=tkinter.Button(window,text="next",command=click)
-                btn.grid(column=0,row=1)
-                window.mainloop()
+            def click():
+                lbl.configure(text=next(file.readlines()))
+            lbl=tkinter.Label(window,text=file.readlines()[0])
+            lbl.grid(column=0,row=0)
+            btn=tkinter.Button(window,text="next",command=click)
+            btn.grid(column=0,row=1)
+            window.mainloop()
     else:
         sys.exit()
 def _export(result=0):
