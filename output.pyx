@@ -13,7 +13,7 @@ cdef void export(int status):
             lbl=tkinter.Label(window,text=file.readlines()[0])
             lbl.grid(column=0,row=0)
             def click():
-                lbl.configure(text=next(file.readlines()))
+                lbl.configure(text=file.readlines().__next__())
             btn=tkinter.Button(window,text="next",command=click)
             btn.grid(column=0,row=1)
             window.mainloop()
