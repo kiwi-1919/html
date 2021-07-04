@@ -19,6 +19,10 @@ cdef int parse():
     cdef char sl=<char>'/'.encode()
     cdef char ex=<char>'!'.encode()
     #end-cdef
+    fseek(file,0,SEEK_END)
+    cdef size_t length=ftell(file)
+    #end-cdef
+    fseek(file,0,SEEK_SET)
     while True:
         if status==pp and fread(&c,1,1,file)==1 and c==lb:
             if fread(&c,1,1,file)==1 and c==ex:
@@ -37,7 +41,7 @@ cdef int parse():
                 status=sp
         if status==sp and fread(&c,1,1,file)==1 and c==rb:
             status=pp
-        if ftell(file)==SEEK_END:
+        if ftell(file)==length:
             break
     fclose(file)
     print("succeed")
