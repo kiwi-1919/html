@@ -8,9 +8,12 @@ cdef void export(int status):
     elif status==-1:
         window=tkinter.Tk()
         window.title("error")
+        window.geometry("350x200")
         with open("tmp.txt","rt",encoding="utf-8") as file:
-            lbl=tkinter.Label(window,text=file.read())
-            lbl.grid(column=0,row=0)
+            def click():
+                tkinter.messagebox.showinfo("content",file.read())
+            btn=tkinter.Button(window,text="show",command=click)
+            btn.grid(column=0,row=0)
             window.mainloop()
     else:
         sys.exit()
