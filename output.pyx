@@ -16,7 +16,7 @@ cdef void export(int status):
         def click():
             lbl.configure(text=next(it))
         btn=tkinter.Button(window,text="next",command=click)
-        btn.grid(column=0,row=1)
+        btn.grid(column=1,row=0)
         window.mainloop()
     else:
         sys.exit()
