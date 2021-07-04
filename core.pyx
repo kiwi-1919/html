@@ -14,10 +14,14 @@ cdef size_t loc=0
 cdef FILE* file=fopen("tmp.txt","rb")
 cdef int status=pp
 cdef char c
-cdef char lb=<char>'<'.encode()
-cdef char rb=<char>'>'.encode()
-cdef char sl=<char>'/'.encode()
-cdef char ex=<char>'!'.encode()
+cdef bytes b1='<'.encode()
+cdef bytes b2='>'.encode()
+cdef bytes b3='/'.encode()
+cdef bytes b4='!'.encode()
+cdef char lb=<char>b1
+cdef char rb=<char>b2
+cdef char sl=<char>b3
+cdef char ex=<char>b4
 #end-cdef
 
 cdef int parse():
