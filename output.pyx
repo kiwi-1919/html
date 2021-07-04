@@ -10,9 +10,9 @@ cdef void export(int status):
         window.title("error")
         window.geometry("350x200")
         with open("tmp.txt","rt",encoding="utf-8") as file:
-            def click():
-                continue
             for each in file.readlines():
+                def click():
+                    continue
                 lbl=tkinter.Label(window,text=each)
                 lbl.grid(column=0,row=0)
                 btn=tkinter.Button(window,text="next",command=click)
