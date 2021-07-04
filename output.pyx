@@ -11,7 +11,7 @@ cdef void export(int status):
         window.geometry("350x200")
         with open("tmp.txt","rt",encoding="utf-8") as file:
             it=iter(file.readlines())
-        lbl=tkinter.Label(window,text=it[0])
+        lbl=tkinter.Label(window,text=next(it))
         lbl.grid(column=0,row=0)
         def click():
             lbl.configure(text=next(it))
