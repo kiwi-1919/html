@@ -22,6 +22,8 @@ cdef char ex=<char>'!'.encode()
 
 cdef int parse():
     global loc
+    global status
+    global c
     fseek(file,loc,SEEK_SET)
     if status==pp and fread(&c,1,1,file)==1 and c==lb:
         if fread(&c,1,1,file)==1 and c==ex:
