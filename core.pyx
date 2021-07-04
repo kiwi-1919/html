@@ -45,6 +45,6 @@ cdef int parse():
 def _parse():
     fseek(file,0,SEEK_END)
     length=ftell(file)
-    for _ in tqdm.trange(file)
+    for _ in tqdm.trange(file):
         result=parse()
     return result
