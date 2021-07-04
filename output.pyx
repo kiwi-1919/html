@@ -8,7 +8,7 @@ cdef void export(int status):
     elif status==-1:
         window=tkinter.Tk()
         window.title("error")
-        with open("tmp.txt","rt"):
+        with open("tmp.txt","rt") as file:
             lbl=tkinter.Label(window,text=file.read())
             lbl.grid(column=0,row=0)
             window.mainloop()
