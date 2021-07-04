@@ -11,10 +11,13 @@ cdef void export(int status):
         window.geometry("350x200")
         with open("tmp.txt","rt",encoding="utf-8") as file:
             def click():
-                tkinter.messagebox.showinfo("content",file.read())
-            btn=tkinter.Button(window,text="show",command=click)
-            btn.grid(column=0,row=0)
-            window.mainloop()
+                pass
+            for each in file.readlines():
+                lbl=tkinter.Label(window,text=each)
+                lbl.grid(column=0,row=0)
+                btn=tkinter.Button(window,text="next",command=click)
+                btn.grid(column=0,row=1)
+                window.mainloop()
     else:
         sys.exit()
 def _export(result=0):
