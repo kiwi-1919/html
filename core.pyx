@@ -4,11 +4,11 @@ from libc.stdio cimport *
 import sys
 sys.setrecursionlimit=10**100
 
-cdef static int pp=0
-cdef static int anno=1
-cdef static int ps=2
-cdef static int sp=3
-cdef static int ss=4
+cdef int pp=0
+cdef int anno=1
+cdef int ps=2
+cdef int sp=3
+cdef int ss=4
 
 cdef int parse():
     cdef FILE* file=fopen("tmp.txt","rb")
