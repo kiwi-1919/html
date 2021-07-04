@@ -36,11 +36,12 @@ cdef int parse():
             status=ss
     if status==anno and fread(&c,1,1,file)==1 and c==rb:
         status=pp
-    if status==ss and fread(&c,1,1,file)==1 and c==sl:
-        if fread(&c,1,1,file)==1 and c==rb:
-            status=pp
-    if status==ss and fread(&c,1,1,file)==1 and c==rb:
-        status==ps
+    if status==ss and fread(&c,1,1,file)==1:
+        if c==sl:
+            if fread(&c,1,1,file)==1 and c==rb:
+                status=pp
+        elif c==rb:
+            status=ps
     if status==ps and fread(&c,1,1,file)==1 and c==lb:
         if fread(&c,1,1,file)==1 and c==sl:
             status=sp
